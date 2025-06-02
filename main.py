@@ -9,7 +9,7 @@ from physics import (
 # Import all chemistry modules 
 from chemistry import (
     atomic_structure, chemical_bonding, thermodynamics,
-    reaction_kinetics, organic_chemistry
+    reaction_kinetics
 )
 
 def main():
@@ -28,7 +28,7 @@ def main():
             "Wave Optics": Wave Optics.run,
             "Projectile Motion": Projectile Motion.run,
             "Electrostatics": Electrostatics.run,
-            "Ohm's Law": Ohm's Law.run
+            "Ohm's Law": Ohms law.run
         }
         topic = st.sidebar.selectbox("Select Physics Topic:", list(physics_topics.keys()))
         st.sidebar.markdown("---")
@@ -41,8 +41,7 @@ def main():
             "Atomic Structure": Atomic Structure.run,
             "Chemical Bonding": Chemical Bonding.run,
             "Thermodynamics": Thermodynamics.run,
-            "Reaction Kinetics": Reaction Kinetics.run,
-            "Organic Chemistry": Organic Chemistry.run
+            "Reaction Kinetics": Reaction Kinetics.run
         }
         topic = st.sidebar.selectbox("Select Chemistry Topic:", list(chemistry_topics.keys()))
         st.sidebar.markdown("---")
