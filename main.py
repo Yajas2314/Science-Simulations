@@ -11,19 +11,19 @@ import importlib
 topics = {
     "Home": None,
     "Physics Lab 🧪": {
-        "Reflection of Light": "reflection.run",
-        "Refraction of Light": "refraction.run",
-        "Dispersion of Light": "dispersion.run",
-        "Wave Optics": "wave_optics.run",
-        "Projectile Motion": "projectile_motion.run",
-        "Electrostatics": "electrostatics.run",
-        "Ohm's Law": "ohms_law.run"
+        "Reflection of Light": "physics/reflection.run",
+        "Refraction of Light": "physics/refraction.run",
+        "Dispersion of Light": "physics/dispersion.run",
+        "Wave Optics": "physics/wave_optics.run",
+        "Projectile Motion": "physics/projectile_motion.run",
+        "Electrostatics": "physics/electrostatics.run",
+        "Ohm's Law": "physics/ohms_law.run"
     },
     "Chemistry Lab ⚗️": {
-        "Atomic Structure": "atomic_structure.run",
-        "Chemical Bonding": "chemical_bonding.run",
-        "Kinetics ": "reaction_kinetics.run",
-        "Thermodynamics": "thermodynamics.run"
+        "Atomic Structure": "chemistry/catomic_structure.run",
+        "Chemical Bonding": "chemistry/chemical_bonding.run",
+        "Kinetics ": "chemistry/reaction_kinetics.run",
+        "Thermodynamics": "chemistry/thermodynamics.run"
     }
 }
 
