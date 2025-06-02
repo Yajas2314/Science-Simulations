@@ -7,57 +7,50 @@ print("System path:", sys.path)
 import streamlit as st
 import importlib
 
-# Mapping of menu options to module paths
-topics = {
-    "Home": None,
-    "Physics Lab 🧪": {
-        "Reflection of Light": "physics/reflection.run",
-        "Refraction of Light": "physics/refraction.run",
-        "Dispersion of Light": "physics/dispersion.run",
-        "Wave Optics": "physics/wave_optics.run",
-        "Projectile Motion": "physics/projectile_motion.run",
-        "Electrostatics": "physics/electrostatics.run",
-        "Ohm's Law": "physics/ohms_law.run"
-    },
-    "Chemistry Lab ⚗️": {
-        "Atomic Structure": "chemistry/catomic_structure.run",
-        "Chemical Bonding": "chemistry/chemical_bonding.run",
-        "Kinetics ": "chemistry/reaction_kinetics.run",
-        "Thermodynamics": "chemistry/thermodynamics.run"
-    }
+st.set_page_config(page_title="Virtual Physics & Chemistry Lab Simulator", layout="wide")
+
+st.markdown("<h1 style='text-align: center;'>🧪 Virtual Physics & Chemistry Lab Simulator</h1>", unsafe_allow_html=True)
+
+lab_choice = st.selectbox("Select Lab", ["Physics Lab", "Chemistry Lab"])
+
+# Define topic-to-module mappings
+physics_topics = {
+    "Reflection of Light": "physics.reflection",
+    "Refraction of Light": "physics.refraction",
+    "Dispersion of Light": "physics.dispersion",
+    "Wave Optics": "physics.wave_optics",
+    "Electrostatics": "physics.electrostatics",
+    "Projectile Motion": "physics.projectile",
+    "Ohm's Law": "physics.ohms_law"
 }
 
-st.set_page_config(page_title="Virtual Lab Simulator", layout="centered")
+chemistry_topics = {
+    "Types of Chemical Reactions": "chemistry.chemical_reactions",
+    "NCERT Reactions (9th–12th)": "chemistry.ncert_reactions",
+    "Color Changes in Reactions": "chemistry.color_changes",
+    "Organic Chemistry Reactions": "chemistry.organic_reactions"
+}
 
-st.title("🔬 Virtual Physics & Chemistry Lab Simulator")
-
-# Sidebar layout
-lab_choice = st.sidebar.selectbox("Select Lab", ["Home", "Physics Lab 🧪", "Chemistry Lab ⚗️"])
-
-if lab_choice == "Home":
-    st.subheader("Welcome to the Virtual Lab!")
-    st.markdown(
-        """
-        This simulator covers both Physics and Chemistry topics for students from Classes 9–12.
-        
-        - Visualize and interact with experiments.
-        - See formulas and concepts applied in real time.
-        - Use it as a powerful revision and learning tool.
-        
-        Select a lab from the sidebar to begin.
-        """
-    )
-
+# Get the appropriate topic list
+if lab_choice == "Physics Lab":
+    topic_dict = physics_topics
+elif lab_choice == "Chemistry Lab":
+    topic_dict = chemistry_topics
 else:
-    topic = st.sidebar.selectbox("Select Topic", list(topics[lab_choice].keys()))
+    topic_dict = {}
 
-    if topic:
-        module_path = topics[lab_choice][topic]
-        try:
-            module = importlib.import_module(module_path)
-            if hasattr(module, "run"):
-                module.run()
-            else:
-                st.error("This topic doesn't have a 'run()' function.")
-        except Exception as e:
-            st.error(f"Failed to load module `{module_path}`.\n\nError: {str(e)}")
+# Display topic selection
+selected_topic = st.selectbox("Select Topic", list(topic_dict.keys()))
+
+# Load and run the selected module
+if selected_topic:
+    module_path = topic_dict[selected_topic]
+    try:
+        module = importlib.import_module(module_path)
+        module.run()
+    except Exception as e:
+        st.error(f"Failed to load module `{module_path}.run`.\n\nError: {e}")
+
+   
+
+    
