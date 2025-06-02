@@ -22,13 +22,13 @@ def main():
 
     if subject == "Physics":
         physics_topics = {
-            "Reflection": Reflection.run,
-            "Refraction": Refraction.run,
-            "Dispersion": Dispersion.run,
-            "Wave Optics": Wave Optics.run,
-            "Projectile Motion": Projectile Motion.run,
-            "Electrostatics": Electrostatics.run,
-            "Ohm's Law": Ohms law.run
+            "Reflection": reflection.run,
+            "Refraction": refraction.run,
+            "Dispersion": dispersion.run,
+            "Wave Optics": wave_optics.run,
+            "Projectile Motion": projectile_motion.run,
+            "Electrostatics": electrostatics.run,
+            "Ohm's Law": ohms_law.run
         }
         topic = st.sidebar.selectbox("Select Physics Topic:", list(physics_topics.keys()))
         st.sidebar.markdown("---")
@@ -38,10 +38,10 @@ def main():
 
     else:  # Chemistry
         chemistry_topics = {
-            "Atomic Structure": Atomic Structure.run,
-            "Chemical Bonding": Chemical Bonding.run,
-            "Thermodynamics": Thermodynamics.run,
-            "Reaction Kinetics": Reaction Kinetics.run
+            "Atomic structure": atomic_structure.run,
+            "Chemical bonding": chemical_bonding.run,
+            "Thermodynamics": thermodynamics.run,
+            "Reaction Kinetics": reaction_kinetics.run
         }
         topic = st.sidebar.selectbox("Select Chemistry Topic:", list(chemistry_topics.keys()))
         st.sidebar.markdown("---")
