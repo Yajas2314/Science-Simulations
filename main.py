@@ -1,5 +1,9 @@
 # main.py
 
+import os, sys
+print("Current directory:", os.getcwd())
+print("System path:", sys.path)
+
 import streamlit as st
 import importlib
 
