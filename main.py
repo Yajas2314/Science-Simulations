@@ -19,7 +19,7 @@ physics_topics = {
     "Dispersion of Light": "physics.dispersion",
     "Wave Optics": "physics.wave_optics",
     "Electrostatics": "physics.electrostatics",
-    "Projectile Motion": "physics.projectile",
+    "Projectile Motion": "physics.projectile_motion",
     "Ohm's Law": "physics.ohms_law"
 }
 
