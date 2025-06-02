@@ -1,53 +1,59 @@
+# main.py
+
 import streamlit as st
+import importlib
 
-# Import all physics modules
-from physics import (
-    reflection, refraction, dispersion, wave_optics,
-    projectile_motion, electrostatics, ohms_law
-)
+# Mapping of menu options to module paths
+topics = {
+    "Home": None,
+    "Physics Lab 🧪": {
+        "Reflection of Light": "physics.reflection",
+        "Refraction of Light": "physics.refraction",
+        "Dispersion of Light": "physics.dispersion",
+        "Wave Optics": "physics.wave_optics",
+        "Projectile Motion": "physics.projectile_motion",
+        "Electrostatics": "physics.electrostatics",
+        "Ohm's Law": "physics.ohms_law"
+    },
+    "Chemistry Lab ⚗️": {
+        "Atomic Structure": "chemistry.atomic_structure",
+        "Chemical Bonding": "chemistry.chemical_bonding",
+        "Kinetics ": "chemistry.reaction_kinetics",
+        "Thermodynamics": "chemistry.thermodynamics"
+    }
+}
 
-# Import all chemistry modules 
-from chemistry import (
-    atomic_structure, chemical_bonding, thermodynamics,
-    reaction_kinetics
-)
+st.set_page_config(page_title="Virtual Lab Simulator", layout="centered")
 
-def main():
-    st.set_page_config(page_title="Virtual Physics & Chemistry Lab", layout="wide")
+st.title("🔬 Virtual Physics & Chemistry Lab Simulator")
 
-    st.title("🧪 Virtual Physics & Chemistry Lab Simulator")
+# Sidebar layout
+lab_choice = st.sidebar.selectbox("Select Lab", ["Home", "Physics Lab 🧪", "Chemistry Lab ⚗️"])
 
-    st.sidebar.title("Select Subject")
-    subject = st.sidebar.radio("Choose your lab:", ["Physics", "Chemistry"])
+if lab_choice == "Home":
+    st.subheader("Welcome to the Virtual Lab!")
+    st.markdown(
+        """
+        This simulator covers both Physics and Chemistry topics for students from Classes 9–12.
+        
+        - Visualize and interact with experiments.
+        - See formulas and concepts applied in real time.
+        - Use it as a powerful revision and learning tool.
+        
+        Select a lab from the sidebar to begin.
+        """
+    )
 
-    if subject == "Physics":
-        physics_topics = {
-            "Reflection": reflection.run,
-            "Refraction": refraction.run,
-            "Dispersion": dispersion.run,
-            "Wave Optics": wave_optics.run,
-            "Projectile Motion": projectile_motion.run,
-            "Electrostatics": electrostatics.run,
-            "Ohm's Law": ohms_law.run
-        }
-        topic = st.sidebar.selectbox("Select Physics Topic:", list(physics_topics.keys()))
-        st.sidebar.markdown("---")
-        st.sidebar.write("Physics Concepts, Formulas, Simulations, Q&A")
+else:
+    topic = st.sidebar.selectbox("Select Topic", list(topics[lab_choice].keys()))
 
-        physics_topics[topic]()  # run the selected module
-
-    else:  # Chemistry
-        chemistry_topics = {
-            "Atomic structure": atomic_structure.run,
-            "Chemical bonding": chemical_bonding.run,
-            "Thermodynamics": thermodynamics.run,
-            "Reaction Kinetics": reaction_kinetics.run
-        }
-        topic = st.sidebar.selectbox("Select Chemistry Topic:", list(chemistry_topics.keys()))
-        st.sidebar.markdown("---")
-        st.sidebar.write("Chemistry Concepts, Reactions, Formulae, Q&A")
-
-        chemistry_topics[topic]()  # run the selected module
-
-if __name__ == "__main__":
-    main()
+    if topic:
+        module_path = topics[lab_choice][topic]
+        try:
+            module = importlib.import_module(module_path)
+            if hasattr(module, "run"):
+                module.run()
+            else:
+                st.error("This topic doesn't have a 'run()' function.")
+        except Exception as e:
+            st.error(f"Failed to load module `{module_path}`.\n\nError: {str(e)}")
