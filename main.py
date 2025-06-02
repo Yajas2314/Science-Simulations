@@ -1,11 +1,11 @@
 # main.py
-
-import os, sys
-print("Current directory:", os.getcwd())
-print("System path:", sys.path)
-
 import streamlit as st
 import importlib
+import sys
+import os
+
+# Fix import path issue on Streamlit Cloud
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 st.set_page_config(page_title="Virtual Physics & Chemistry Lab Simulator", layout="wide")
 
@@ -13,7 +13,6 @@ st.markdown("<h1 style='text-align: center;'>🧪 Virtual Physics & Chemistry La
 
 lab_choice = st.selectbox("Select Lab", ["Physics Lab", "Chemistry Lab"])
 
-# Define topic-to-module mappings
 physics_topics = {
     "Reflection of Light": "physics.reflection",
     "Refraction of Light": "physics.refraction",
@@ -25,11 +24,12 @@ physics_topics = {
 }
 
 chemistry_topics = {
-    "Types of Chemical Reactions": "chemistry.chemical_reactions",
-    "NCERT Reactions (9th–12th)": "chemistry.ncert_reactions",
-    "Color Changes in Reactions": "chemistry.color_changes",
-    "Organic Chemistry Reactions": "chemistry.organic_reactions"
+    "Atomic Structure": "chemistry.atomic_structure",
+    "Chemical Bonding": "chemistry.chemical_bonding",
+    "Chemical Kinetics": "chemistry.reaction_kinetics",
+    "Thermodynamics": "chemistry.thermodynamics"
 }
+
 
 # Get the appropriate topic list
 if lab_choice == "Physics Lab":
