@@ -33,19 +33,16 @@ formulas = {
     ],
 
     # Chemistry Formulas
-    "Inorganic": [
-        r"2H_2 + O_2 \rightarrow 2H_2O",
-        r"Fe_2O_3 + 3CO \rightarrow 2Fe + 3CO_2",
-        r"CuSO_4 + Zn \rightarrow ZnSO_4 + Cu"
+    chemistry_formulas = {
+    "Atomic Structure": [
+        r"Z = \text{Atomic Number}",
+        r"A = \text{Mass Number} = Z + N",
+        r"E_n = -13.6 \frac{Z^2}{n^2} \text{ eV}"
     ],
-    "Organic": [
-        r"CH_3CH_2OH + O_2 \rightarrow CH_3CHO + H_2O",
-        r"C_2H_4 + Br_2 \rightarrow C_2H_4Br_2"
-    ],
-    "Chemistry Simulations": [
-        r"pH = -\log[H^+]",
-        r"\text{Indicator color changes with pH}"
-    ]
+    "Chemical Bonding": [
+        r"\text{Ionic Bonding: } \text{Na} + \text{Cl} \to \text{Na}^+ + \text{Cl}^-",
+        r"\text{Covalent Bonding: } \text{H} + \text{H} \to \text{H}_2"
+
 }
 
 import streamlit as st
