@@ -1,5 +1,5 @@
-from . import Atomic Structure
-from . import Chemical Bonding
-from . import Thermodynamics
-from . import Reaction Kinetics
-from . import Organic Chemistry
+from . import atomic_structure
+from . import chemical_bonding
+from . import thermodynamics
+from . import reaction_kinetics
+
