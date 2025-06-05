@@ -11,7 +11,9 @@ topics = [
     "Refraction of Light",
     "Dispersion of Light",
     "Wave Optics",
-    "Electrostatics"
+    "Electrostatics",
+    "Ohm's Law",
+    "Projectile Motion"
 ]
 
 choice = st.sidebar.selectbox("🔍 Select a Physics Topic", topics)
@@ -21,7 +23,9 @@ module_map = {
     "Refraction of Light": "refraction",
     "Dispersion of Light": "dispersion",
     "Wave Optics": "wave_optics",
-    "Electrostatics": "electrostatics"
+    "Electrostatics": "electrostatics",
+    "Ohm's Law": "ohms_law",
+    "Projectile Motion" : "projectile_motion"
 }
 
 if choice == "Home":
