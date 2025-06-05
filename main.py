@@ -10,7 +10,8 @@ topics = [
     "Reflection of Light",
     "Refraction of Light",
     "Dispersion of Light",
-    "Wave Optics",
+    "Wave Optics Interference",
+    "Wave Optics Diffraction, 
     "Electrostatics",
     "Ohm's Law",
     "Projectile Motion"
@@ -22,7 +23,8 @@ module_map = {
     "Reflection of Light": "reflection",
     "Refraction of Light": "refraction",
     "Dispersion of Light": "dispersion",
-    "Wave Optics": "wave_optics",
+    "Wave Optics Interference": "wave_optics_interference",
+    "Wave Optics Diffraction" : "wave_optics_diffraction",
     "Electrostatics": "electrostatics",
     "Ohm's Law": "ohms_law",
     "Projectile Motion" : "projectile_motion"
