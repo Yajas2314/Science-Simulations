@@ -11,7 +11,7 @@ topics = [
     "Refraction of Light",
     "Dispersion of Light",
     "Wave Optics Interference",
-    "Wave Optics Diffraction, 
+    "Wave Optics Diffraction", 
     "Electrostatics",
     "Ohm's Law",
     "Projectile Motion"
