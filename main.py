@@ -1,56 +1,51 @@
 # main.py
 import streamlit as st
 import importlib
-import sys
-import os
 
-# Fix import path issue on Streamlit Cloud
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+st.set_page_config(page_title="Virtual Lab Simulator", layout="wide")
+st.title("🧪🔬 Virtual Lab Simulator - Physics Only")
 
-st.set_page_config(page_title="Virtual Physics & Chemistry Lab Simulator", layout="wide")
+topics = [
+    "Home",
+    "Reflection of Light",
+    "Refraction of Light",
+    "Dispersion of Light",
+    "Wave Optics",
+    "Electrostatics"
+]
 
-st.markdown("<h1 style='text-align: center;'>🧪 Virtual Physics & Chemistry Lab Simulator</h1>", unsafe_allow_html=True)
+choice = st.sidebar.selectbox("🔍 Select a Physics Topic", topics)
 
-lab_choice = st.selectbox("Select Lab", ["Physics Lab", "Chemistry Lab"])
-
-physics_topics = {
-    "Reflection of Light": "physics.reflection",
-    "Refraction of Light": "physics.refraction",
-    "Dispersion of Light": "physics.dispersion",
-    "Wave Optics": "physics.wave_optics",
-    "Electrostatics": "physics.electrostatics",
-    "Projectile Motion": "physics.projectile_motion",
-    "Ohm's Law": "physics.ohms_law"
+module_map = {
+    "Reflection of Light": "reflection",
+    "Refraction of Light": "refraction",
+    "Dispersion of Light": "dispersion",
+    "Wave Optics": "wave_optics",
+    "Electrostatics": "electrostatics"
 }
 
-chemistry_topics = {
-    "Atomic Structure": "chemistry.atomic_structure",
-    "Chemical Bonding": "chemistry.chemical_bonding",
-    "Chemical Kinetics": "chemistry.reaction_kinetics",
-    "Thermodynamics": "chemistry.thermodynamics"
-}
+if choice == "Home":
+    st.markdown("""
+    ## 👋 Welcome to the Physics Virtual Lab
+    This simulator allows you to:
+    - Visualize **Physics** experiments
+    - Understand concepts with **interactive plots**
+    - Revise with **formulas** and **diagrams**
 
-
-# Get the appropriate topic list
-if lab_choice == "Physics Lab":
-    topic_dict = physics_topics
-elif lab_choice == "Chemistry Lab":
-    topic_dict = chemistry_topics
+    Select a physics topic from the sidebar to begin.
+    """)
 else:
-    topic_dict = {}
-
-# Display topic selection
-selected_topic = st.selectbox("Select Topic", list(topic_dict.keys()))
-
-# Load and run the selected module
-if selected_topic:
-    module_path = topic_dict[selected_topic]
-    try:
-        module = importlib.import_module(module_path)
-        module.run()
-    except Exception as e:
-        st.error(f"Failed to load module `{module_path}.run`.\n\nError: {e}")
-
-   
-
-    
+    module_name = module_map.get(choice)
+    if module_name:
+        try:
+            module = importlib.import_module(module_name)
+            if hasattr(module, "run"):
+                module.run()
+            else:
+                st.warning(f"The module '{module_name}' does not have a 'run()' function.")
+        except ModuleNotFoundError:
+            st.error(f"Module '{module_name}' not found. Make sure '{module_name}.py' is in the same folder as main.py.")
+        except Exception as e:
+            st.error(f"Error loading simulation for {choice}: {e}")
+    else:
+        st.warning("Selected topic not available.")
